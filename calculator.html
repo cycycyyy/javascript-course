@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+
+    <style>
+        * {
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        body {
+            background-color: black;
+            width: 280px;
+        }
+
+        button {
+            color: white;
+            margin: 0 5px 0 0;
+            border-radius: 60px;
+            height: 60px;
+            width: 60px;
+            border: none;
+            font-size: 26px;
+            cursor: pointer;
+        }
+
+        div {
+            display: flex;
+            justify-content: space-between;
+            margin: 20px 0;
+        }
+
+        .dark-btn {
+            background-color: #333333
+        }
+
+        .orange-btn {
+            background-color: #FEA00A
+        }
+
+        .clear-button {
+            font-size: 17px;
+        }
+
+        .calculation {
+            color: white;
+            font-size: 40px;
+            letter-spacing: 1px;
+        }
+    </style>
+</head>
+
+<body>
+    <p id="js-calculation" class="calculation"></p>
+    <div>
+        <button class="dark-btn" onclick="Calculation('1');">1</button>
+        <button class="dark-btn" onclick="Calculation('2');">2</button>
+        <button class="dark-btn" onclick="Calculation('3');">3</button>
+        <button class="orange-btn" onclick="Calculation('+');">+</button>
+    </div>
+    <div>
+        <button class="dark-btn" onclick="Calculation('4');">4</button>
+        <button class="dark-btn" onclick="Calculation('5');">5</button>
+        <button class="dark-btn" onclick="Calculation('6');">6</button>
+        <button class="orange-btn" onclick="Calculation('-');">-</button>
+    </div>
+    <div>
+        <button class="dark-btn" onclick="Calculation('7');">7</button>
+        <button class="dark-btn" onclick="Calculation('8');">8</button>
+        <button class="dark-btn" onclick="Calculation('9');">9</button>
+        <button class="orange-btn" onclick="Calculation('*');">*</button>
+    </div>
+    <div>
+        <button class="dark-btn" onclick="Calculation('0');">0</button>
+        <button class="dark-btn" onclick="Calculation('.');">.</button>
+        <button class="dark-btn" onclick="Calculation('=');">=</button>
+        <button class="orange-btn" onclick="Calculation('/');">/</button>
+    </div>
+    <button class="dark-btn clear-button" onclick="Calculation('Clear');">Clear</button>
+    <button class="dark-btn clear-button" onclick="Calculation('Remove');">
+        < x </button>
+</body>
+
+<script>
+
+    let calculation = '';
+
+    function Calculation(enteredKey) {
+
+        if (enteredKey == '=') {
+            try {
+                calculation = eval(calculation)
+                calculation = calculation.toString();
+                document.getElementById('js-calculation').innerHTML = calculation;
+            }
+            catch (error) {
+                document.getElementById('js-calculation').innerHTML = NaN;
+            }
+        }
+        else if (enteredKey == 'Clear') {
+            calculation = '';
+            document.getElementById('js-calculation').innerHTML = '';
+        }
+        else if (enteredKey == 'Remove') {
+            calculation = calculation.slice(0, -1);
+            document.getElementById('js-calculation').innerHTML = calculation;
+        }
+        else if (enteredKey == '+' || enteredKey == '*' || enteredKey == '/' || enteredKey == '-') {
+            if (enteredKey == calculation.charAt(calculation.length - 1)) {
+                document.getElementById('js-calculation').innerHTML = calculation;
+            }
+            else {
+                calculation += enteredKey;
+                document.getElementById('js-calculation').innerHTML = calculation;
+            }
+        }
+        else {
+            calculation += enteredKey;
+            document.getElementById('js-calculation').innerHTML = calculation;
+        }
+
+        console.log(calculation.charAt(calculation.length - 1));
+    }
+
+    /*  document.getElementsByClassName('js-calculation').innerHTML = calculation; */
+</script>
+
+</html>

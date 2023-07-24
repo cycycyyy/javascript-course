@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cart Quantity</title>
+</head>
+
+<body>
+    <p>Cart Quantity</p>
+
+    <button onclick="ShowQuantity()">Show Quantity</button>
+    <button onclick="AddToCart()">Add to Cart</button>
+    <button onclick="AddTwoCart()">+2</button>
+    <button onclick="AddThreeCart()">+3</button>
+    <button onclick="ResetCart()">Reset Cart</button>
+    <button onclick="RemoveFromCart()">Remove from Cart</button>
+    <button onclick="RemoveTwoFromCart()">-2</button>
+    <button onclick="RemoveThreeFromCart()">-3</button>
+</body>
+
+<script>
+    let cartQuantity = 0;
+
+    function ShowQuantity() {
+        console.log(`Cart quantity: ${cartQuantity}`);
+    }
+
+    function AddToCart() {
+        cartQuantity++;
+        console.log(`Cart quantity: ${cartQuantity}`);
+    }
+
+    function AddTwoCart() {
+        cartQuantity += 2;
+        console.log(`Cart quantity: ${cartQuantity}`);
+    }
+
+    function AddThreeCart() {
+        cartQuantity += 3;
+        console.log(`Cart quantity: ${cartQuantity}`);
+    }
+
+    function ResetCart() {
+        cartQuantity = 0;
+        console.log(`Cart was reset\nCart quantity: ${cartQuantity}`);
+    }
+
+    function RemoveFromCart() {
+        if (cartQuantity <= 0) {
+            console.log(`Cart quantity: ${cartQuantity}`);
+        }
+        else {
+            cartQuantity--;
+            console.log(`Cart was decreased\nCart quantity: ${cartQuantity}`);
+        }
+    }
+
+    function RemoveTwoFromCart() {
+        if (cartQuantity <= 2) {
+            cartQuantity = 0;
+        }
+        else {
+            cartQuantity -= 2;
+        }
+        console.log(`Cart was decreased\nCart quantity: ${cartQuantity}`);
+    }
+
+    function RemoveThreeFromCart() {
+        if (cartQuantity <= 3) {
+            cartQuantity = 0;
+        }
+        else {
+            cartQuantity -= 3;
+        }
+        console.log(`Cart was decreased\nCart quantity: ${cartQuantity}`);
+    }
+</script>
+
+</html>
