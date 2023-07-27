@@ -90,7 +90,7 @@
 
     function Calculation(enteredKey) {
 
-        if (enteredKey == '=') {
+        if (enteredKey === '=') {
             try {
                 calculation = eval(calculation)
                 calculation = calculation.toString();
@@ -100,16 +100,16 @@
                 document.getElementById('js-calculation').innerHTML = NaN;
             }
         }
-        else if (enteredKey == 'Clear') {
+        else if (enteredKey === 'Clear') {
             calculation = '';
             document.getElementById('js-calculation').innerHTML = '';
         }
-        else if (enteredKey == 'Remove') {
+        else if (enteredKey === 'Remove') {
             calculation = calculation.slice(0, -1);
             document.getElementById('js-calculation').innerHTML = calculation;
         }
-        else if (enteredKey == '+' || enteredKey == '*' || enteredKey == '/' || enteredKey == '-') {
-            if (enteredKey == calculation.charAt(calculation.length - 1)) {
+        else if (enteredKey === '+' || enteredKey === '*' || enteredKey === '/' || enteredKey === '-') {
+            if (enteredKey === calculation.charAt(calculation.length - 1)) {
                 document.getElementById('js-calculation').innerHTML = calculation;
             }
             else {

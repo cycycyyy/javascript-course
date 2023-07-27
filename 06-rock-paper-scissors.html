@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rock Paper Scissors</title>
+
+    <style>
+        body {
+            margin: 0 auto;
+        }
+
+        .game-display {
+            display: grid;
+            grid-template-columns: auto auto auto;
+        }
+
+        .game-display span {
+            font-size: 100px;
+            display: inline-block;
+        }
+
+        .left-display {
+            text-align: right;
+        }
+
+        .right-display {
+            text-align: left;
+        }
+
+        .left-display span {
+            transform: rotate(95deg);
+        }
+
+        .right-display span {
+            transform: rotate(280deg);
+        }
+    </style>
+</head>
+
+<body>
+    <p>Rock Paper Scissors</p>
+
+
+    <div class="game-display">
+        <div class="left-display">
+            <span id='player-move-hand'>✊</span>
+        </div>
+        <div class="right-display">
+            <span id='comp-move-hand'>✊</span>
+        </div>
+    </div>
+
+    <button onclick="Decision('Rock')">✊Rock</button>
+    <button onclick="Decision('Paper')">✋Paper</button>
+    <button onclick="Decision('Scissors')">✌️Scissors</button>
+
+    <p id='score-display'></p>
+    <button onclick="ResetScore()">Reset Score</button>
+
+</body>
+
+<script>
+
+    let wins = 0, losses = 0, ties = 0;
+
+    document.getElementById('score-display').innerHTML = `Wins: ${wins}, Losses: ${losses}, Ties: ${ties}`;
+
+    function Decision(playerMove) {
+
+        computerMove = ComputerMoveRand();
+
+        if (playerMove === 'Rock') {
+            document.getElementById('player-move-hand').innerHTML = '✊';
+            if (computerMove === 'Scissors') {
+                wins++;
+                alert(`Your move is ${playerMove}, and Computer's move is ${computerMove}. You win!`)
+            }
+            else if (computerMove === 'Paper') {
+                losses++;
+                alert(`Your move is ${playerMove}, and Computer's move is ${computerMove}. You lose!`)
+            }
+            else if (computerMove === 'Rock') {
+                ties++;
+                alert(`Your move is ${playerMove}, and Computer's move is ${computerMove}. You've tied!`)
+            }
+        }
+        else if (playerMove === 'Paper') {
+            document.getElementById('player-move-hand').innerHTML = '✋';
+            if (computerMove === 'Scissors') {
+                losses++;
+                alert(`Your move is ${playerMove}, and Computer's move is ${computerMove}. You lose!`)
+            }
+            else if (computerMove === 'Paper') {
+                ties++;
+                alert(`Your move is ${playerMove}, and Computer's move is ${computerMove}. You've tied!`)
+            }
+            else if (computerMove === 'Rock') {
+                wins++;
+                alert(`Your move is ${playerMove}, and Computer's move is ${computerMove}. You win!`)
+            }
+        }
+        else if (playerMove === 'Scissors') {
+            document.getElementById('player-move-hand').innerHTML = '✌️';
+            if (computerMove === 'Scissors') {
+                ties++;
+                alert(`Your move is ${playerMove}, and Computer's move is ${computerMove}. You've tied!`)
+            }
+            else if (computerMove === 'Paper') {
+                wins++;
+                alert(`Your move is ${playerMove}, and Computer's move is ${computerMove}. You win!`)
+            }
+            else if (computerMove === 'Rock') {
+                losses++;
+                alert(`Your move is ${playerMove}, and Computer's move is ${computerMove}. You lose!`)
+            }
+        }
+
+        document.getElementById('score-display').innerHTML = `Wins: ${wins}, Losses: ${losses}, Ties: ${ties}`;
+    }
+
+    function ComputerMoveRand() {
+
+        const randomNumber = Math.random();
+        let computerMove = '';
+
+        if (randomNumber >= 0 && randomNumber < 1 / 3) {
+            computerMove = ('Rock');
+            document.getElementById('comp-move-hand').innerHTML = '✊';
+        }
+        else if (randomNumber >= 1 / 3 && randomNumber < 2 / 3) {
+            computerMove = ('Paper');
+            document.getElementById('comp-move-hand').innerHTML = '✋';
+        }
+        else if (randomNumber >= 2 / 3 && randomNumber < 1) {
+            computerMove = ('Scissors');
+            document.getElementById('comp-move-hand').innerHTML = '✌️';
+        }
+
+        return computerMove;
+    }
+
+    function ResetScore() {
+        wins = 0, losses = 0, ties = 0;
+        document.getElementById('player-move-hand').innerHTML = '✊';
+        document.getElementById('comp-move-hand').innerHTML = '✊';
+        document.getElementById('score-display').innerHTML = `Wins: ${wins}, Losses: ${losses}, Ties: ${ties}`;
+    }
+</script>
+
+</html>
